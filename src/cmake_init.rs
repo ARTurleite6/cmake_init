@@ -59,7 +59,7 @@ impl App {
         std::env::set_current_dir("build")?;
 
         Command::new("cmake")
-            .arg("-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE")
+            .arg("-DCMAKE_EXPORT_COMPILE_COMMANDS=ON")
             .arg("-DCMAKE_BUILD_TYPE=Debug")
             .arg("..")
             .output()
@@ -114,7 +114,7 @@ impl App {
 project({0})
 
 set(CMAKE_CXX_STANDARD {1})
-set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS}} -Wall -Wextra -Werror -Wpedantric")
+set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS}} -Wall -Wextra -Werror -Wpedantic")
 
 add_subdirectory(deps)
 add_executable({0} src/main.cpp)"#,
