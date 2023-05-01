@@ -47,6 +47,9 @@ impl App {
         self.set_project_as_env()?;
         std::fs::create_dir("src")?;
         std::fs::create_dir("build")?;
+        std::fs::create_dir("deps")?;
+
+        create_file("deps/CMakeLists.txt", "")?;
 
         let content = self.get_cmake_file_content();
         create_file("CMakeLists.txt", &content)?;
@@ -111,7 +114,9 @@ impl App {
 project({0})
 
 set(CMAKE_CXX_STANDARD {1})
-set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS\}} -Wall -Wextra -Werror -Wpedantric")
+set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS}} -Wall -Wextra -Werror -Wpedantric")
+
+add_subdirectory(deps)
 add_executable({0} src/main.cpp)"#,
             self.name, self.version
         );
