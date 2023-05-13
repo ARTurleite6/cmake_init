@@ -24,7 +24,7 @@ pub struct App {
     #[arg(
         long,
         short,
-        default_value = "17",
+        default_value = "20",
         help("Standard C++ Version to be used")
     )]
     version: u8,
