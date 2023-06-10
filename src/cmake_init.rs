@@ -67,12 +67,6 @@ impl App {
 
         std::env::set_current_dir("..").expect("Couldn't go to root directory");
 
-        Command::new("ln")
-            .arg("-s")
-            .arg("build-debug/compile_commands.json")
-            .output()
-            .expect("Error linking to compile_commands");
-
         if self.clang_tidy {
             create_file(".clang-tidy", CLANG_TIDY_CONTENT)?;
         }
@@ -114,7 +108,7 @@ impl App {
 project({0})
 
 set(CMAKE_CXX_STANDARD {1})
-set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS}} -Wall -Wextra -Werror -Wpedantic")
+set(CMAKE_CXX_FLAGS "${{CMAKE_CXX_FLAGS}} -Wall -Wextra -Wpedantic")
 
 add_subdirectory(deps)
 add_executable({0} src/main.cpp)"#,
